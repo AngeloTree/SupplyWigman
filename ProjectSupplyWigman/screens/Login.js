@@ -12,7 +12,7 @@ const Login = ({ navigation }) => {
       <Image style={styles.dogImg} source={require("../assets/topdog.png")} />
       <TouchableOpacity
         style={styles.buttonStyle}
-        onPress={() => console.log("Login button pressed")}
+        onPress={() => navigate("SignIn")}
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
