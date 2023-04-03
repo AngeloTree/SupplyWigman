@@ -1,4 +1,5 @@
 import React from "react";
+import BackIcon from "react-native-vector-icons/Feather";
 import {
   StyleSheet,
   Text,
@@ -8,13 +9,23 @@ import {
   TextInput,
 } from "react-native";
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
+  function navigate(screen) {
+    navigation.navigate(screen);
+  }
   return (
     <View style={styles.mainView}>
       <View style={styles.topView}>
         <Image style={styles.dogImg} source={require("../assets/topdog.png")} />
       </View>
       <View style={styles.bottomView}>
+        <BackIcon
+          name="chevron-left"
+          style={styles.icon}
+          size={60}
+          color={"#fff"}
+          onPress={() => navigate("Login")}
+        />
         <Text style={styles.heading}>Create Account</Text>
         <View style={styles.formView}>
           <TextInput
@@ -77,7 +88,11 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginLeft: 30,
-    marginTop: 60,
+    marginTop: 10,
+  },
+  icon: {
+    marginLeft: 5,
+    marginTop: 10,
   },
   dogImg: {
     width: "50%",
