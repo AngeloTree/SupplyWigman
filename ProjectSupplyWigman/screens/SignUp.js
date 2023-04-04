@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
 import { app } from "../firebase/firebase";
 import {
@@ -11,6 +11,27 @@ import {
 } from "react-native";
 
 const SignUp = ({ navigation }) => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  function fullNameChange(value) {
+    setFullName(value);
+  }
+
+  function emailChange(value) {
+    setEmail(value);
+  }
+
+  function passwordChange(value) {
+    setPassword(value);
+  }
+
+  function confirmPasswordChange(value) {
+    setConfirmPassword(value);
+  }
+
   function navigate(screen) {
     navigation.navigate(screen);
     console.log(app);
@@ -34,23 +55,31 @@ const SignUp = ({ navigation }) => {
             placeholder={"Full Name"}
             placeholderTextColor={"#000"}
             style={styles.textInput}
+            value={fullName}
+            onChangeText={fullNameChange}
           ></TextInput>
           <TextInput
             placeholder={"Email"}
             placeholderTextColor={"#000"}
             style={styles.textInput}
+            value={email}
+            onChangeText={emailChange}
           ></TextInput>
           <TextInput
             placeholder={"Password"}
             placeholderTextColor={"#000"}
             secureTextEntry={true}
             style={styles.textInput}
+            value={password}
+            onChangeText={passwordChange}
           ></TextInput>
           <TextInput
             placeholder={"Confirm Password"}
             placeholderTextColor={"#000"}
             secureTextEntry={true}
             style={styles.textInput}
+            value={confirmPassword}
+            onChangeText={confirmPasswordChange}
           ></TextInput>
           <TouchableOpacity style={styles.buttonStyle}>
             <Text style={styles.buttonText}>Sign up</Text>
