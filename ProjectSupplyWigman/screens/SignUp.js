@@ -1,5 +1,6 @@
 import React from "react";
 import BackIcon from "react-native-vector-icons/Feather";
+import { app } from "../firebase/firebase";
 import {
   StyleSheet,
   Text,
@@ -12,6 +13,7 @@ import {
 const SignUp = ({ navigation }) => {
   function navigate(screen) {
     navigation.navigate(screen);
+    console.log(app);
   }
   return (
     <View style={styles.mainView}>
