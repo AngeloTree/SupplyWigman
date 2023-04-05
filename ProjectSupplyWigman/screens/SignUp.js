@@ -48,6 +48,20 @@ const SignUp = ({ navigation }) => {
     });
   }
 
+  const validateForm = () => {
+    let formInputs = [fullName, email, password, confirmPassword];
+    let passwordsMatch = password === confirmPassword;
+
+    if (formInputs.includes("") || formInputs.includes(undefined)) {
+      console.log(formInputs);
+      return;
+    }
+
+    if (!passwordsMatch) return console.log("Passwords do not match");
+
+    if (passwordsMatch) return createUser();
+  };
+
   return (
     <View style={styles.mainView}>
       <View style={styles.topView}>
@@ -93,10 +107,7 @@ const SignUp = ({ navigation }) => {
             value={confirmPassword}
             onChangeText={confirmPasswordChange}
           ></TextInput>
-          <TouchableOpacity
-            onPress={() => createUser()}
-            style={styles.buttonStyle}
-          >
+          <TouchableOpacity onPress={validateForm} style={styles.buttonStyle}>
             <Text style={styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
         </View>
