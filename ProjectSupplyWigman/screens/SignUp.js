@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
 import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Button, Overlay, Icon } from "@rneui/themed";
+import FormError from "../components/FormError";
+import FormSuccess from "../components/FormSuccess";
 import {
   StyleSheet,
   Text,
