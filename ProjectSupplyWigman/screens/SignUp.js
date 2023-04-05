@@ -19,6 +19,8 @@ const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [displayFormErr, setDisplayFormErr] = useState(false);
+  const [displayFormSucc, setDisplayFormSucc] = useState(false);
 
   function fullNameChange(value) {
     setFullName(value);
@@ -115,6 +117,7 @@ const SignUp = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      {displayFormErr == true ? <FormError /> : null}
     </View>
   );
 };
