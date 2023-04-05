@@ -58,11 +58,11 @@ const SignUp = ({ navigation }) => {
     let passwordsMatch = password === confirmPassword;
 
     if (formInputs.includes("") || formInputs.includes(undefined)) {
-      console.log(formInputs);
+      setDisplayFormErr(true);
       return;
     }
 
-    if (!passwordsMatch) return console.log("Passwords do not match");
+    if (!passwordsMatch) return setDisplayFormErr(true);
 
     if (passwordsMatch) return createUser();
   };
@@ -117,7 +117,9 @@ const SignUp = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      {displayFormErr == true ? <FormError /> : null}
+      {displayFormErr == true ? (
+        <FormError hideErrOverlay={setDisplayFormErr} />
+      ) : null}
     </View>
   );
 };
