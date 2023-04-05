@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
-import { app } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   StyleSheet,
   Text,
@@ -34,8 +35,19 @@ const SignUp = ({ navigation }) => {
 
   function navigate(screen) {
     navigation.navigate(screen);
-    console.log(app);
   }
+
+  async function createUser() {
+    console.log("auth object: ", auth);
+    const result = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    ).then(() => {
+      console.log("worked");
+    });
+  }
+
   return (
     <View style={styles.mainView}>
       <View style={styles.topView}>
@@ -81,7 +93,10 @@ const SignUp = ({ navigation }) => {
             value={confirmPassword}
             onChangeText={confirmPasswordChange}
           ></TextInput>
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity
+            onPress={() => createUser()}
+            style={styles.buttonStyle}
+          >
             <Text style={styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
         </View>
