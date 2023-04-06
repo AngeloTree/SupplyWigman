@@ -51,7 +51,9 @@ const SignUp = ({ navigation }) => {
         console.log("worked");
       })
       .catch((err) => {
-        console.log("createUser func Error: ", err);
+        setErrMessage(err.message);
+        setDisplayFormErr(true);
+        console.log("createUser func Error: ", err.message);
       });
   }
 
