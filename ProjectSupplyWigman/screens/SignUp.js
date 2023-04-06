@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Button, Overlay, Icon } from "@rneui/themed";
 import FormError from "../components/FormError";
 import FormSuccess from "../components/FormSuccess";
+
 import {
   StyleSheet,
   Text,
@@ -20,6 +21,7 @@ const SignUp = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [displayFormErr, setDisplayFormErr] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
   const [displayFormSucc, setDisplayFormSucc] = useState(false);
 
   function fullNameChange(value) {
@@ -59,10 +61,15 @@ const SignUp = ({ navigation }) => {
 
     if (formInputs.includes("") || formInputs.includes(undefined)) {
       setDisplayFormErr(true);
+      setErrMessage("Please fill in all fields");
       return;
     }
 
-    if (!passwordsMatch) return setDisplayFormErr(true);
+    if (!passwordsMatch) {
+      setDisplayFormErr(true);
+      setErrMessage("Passwords do not match");
+      return;
+    }
 
     if (passwordsMatch) return createUser();
   };
@@ -118,7 +125,7 @@ const SignUp = ({ navigation }) => {
         </View>
       </View>
       {displayFormErr == true ? (
-        <FormError hideErrOverlay={setDisplayFormErr} />
+        <FormError hideErrOverlay={setDisplayFormErr} err={errMessage} />
       ) : null}
     </View>
   );
