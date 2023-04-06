@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   errorMessage: {
     fontSize: 20,
     marginTop: 20,
+    textAlign: "center",
   },
   buttonStyle: {
     width: "90%",
