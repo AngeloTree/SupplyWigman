@@ -46,13 +46,13 @@ const SignUp = ({ navigation }) => {
 
   async function createUser() {
     console.log("auth object: ", auth);
-    const result = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    ).then(() => {
-      console.log("worked");
-    });
+    const result = await createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        console.log("worked");
+      })
+      .catch((err) => {
+        console.log("createUser func Error: ", err);
+      });
   }
 
   const validateForm = () => {
