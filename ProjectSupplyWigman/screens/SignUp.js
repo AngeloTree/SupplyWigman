@@ -23,6 +23,8 @@ const SignUp = ({ navigation }) => {
   const [displayFormErr, setDisplayFormErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const [displayFormSucc, setDisplayFormSucc] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   function fullNameChange(value) {
     setFullName(value);
@@ -45,12 +47,14 @@ const SignUp = ({ navigation }) => {
   }
 
   async function createUser() {
-    console.log("auth object: ", auth);
+    setIsLoading(true);
     const result = await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log("worked");
+        setIsLoading(false);
+        setSuccessMessage("Your account has been created");
       })
       .catch((err) => {
+        setIsLoading(false);
         setErrMessage(err.message);
         setDisplayFormErr(true);
         console.log("createUser func Error: ", err.message);
@@ -128,6 +132,15 @@ const SignUp = ({ navigation }) => {
       </View>
       {displayFormErr == true ? (
         <FormError hideErrOverlay={setDisplayFormErr} err={errMessage} />
+      ) : null}
+
+      {isLoading === true ? (
+        <FormSuccess />
+      ) : successMessage === "Your account has been created" ? (
+        <FormSuccess
+          successMessage={successMessage}
+          close={setSuccessMessage}
+        />
       ) : null}
     </View>
   );
