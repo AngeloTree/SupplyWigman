@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
+import FormError from "../components/FormError";
 import {
   StyleSheet,
   Text,
@@ -10,9 +11,23 @@ import {
 } from "react-native";
 
 const SignIn = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [displayFormErr, setDisplayFormErr] = useState(false);
+
   function navigate(screen) {
     navigation.navigate(screen);
   }
+
+  const validateInput = () => {
+    let formInputs = [email, password];
+    if (formInputs.includes("") || formInputs.includes(undefined)) {
+      setDisplayFormErr(true);
+      setErrMessage("Please fill in all fields");
+      return;
+    }
+  };
   return (
     <View style={styles.mainView}>
       <View style={styles.topView}>
@@ -29,21 +44,28 @@ const SignIn = ({ navigation }) => {
         <Text style={styles.heading}>Welcome {"\n"}back</Text>
         <View style={styles.formView}>
           <TextInput
+            value={email}
+            onChangeText={(val) => setEmail(val)}
             placeholder={"Email"}
             placeholderTextColor={"#000"}
             style={styles.textInput}
           ></TextInput>
           <TextInput
+            value={password}
+            onChangeText={(val) => setPassword(val)}
             placeholder={"Password"}
             placeholderTextColor={"#000"}
             secureTextEntry={true}
             style={styles.textInput}
           ></TextInput>
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity style={styles.buttonStyle} onPress={validateInput}>
             <Text style={styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
         </View>
       </View>
+      {displayFormErr == true ? (
+        <FormError hideErrOverlay={setDisplayFormErr} err={errorMessage} />
+      ) : null}
     </View>
   );
 };
