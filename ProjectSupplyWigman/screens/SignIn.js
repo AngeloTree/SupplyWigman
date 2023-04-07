@@ -24,7 +24,7 @@ const SignIn = ({ navigation }) => {
     let formInputs = [email, password];
     if (formInputs.includes("") || formInputs.includes(undefined)) {
       setDisplayFormErr(true);
-      setErrMessage("Please fill in all fields");
+      setErrorMessage("Please fill in all fields");
       return;
     }
   };

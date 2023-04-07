@@ -6,30 +6,41 @@ import { StatusBar } from "expo-status-bar";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
+import Home from "./screens/signedIn/Home";
+import Profile from "./screens/signedIn/Profile";
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [signIn, setSignedIn] = useState(true);
+  const [isSignedIn, setSignedIn] = useState(false);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      {isSignedIn ? (
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Profile" component={Profile} />
+        </Tab.Navigator>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 }
