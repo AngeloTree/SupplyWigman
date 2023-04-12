@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
 import FormError from "../components/FormError";
+import { auth } from "../firebase/firebase";
 import {
   StyleSheet,
   Text,
@@ -27,6 +28,14 @@ const SignIn = ({ navigation }) => {
       setErrorMessage("Please fill in all fields");
       return;
     }
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {})
+      .catch((err) => {
+        setErrorMessage(err.message);
+        return setDisplayFormErr(true);
+      });
   };
   return (
     <View style={styles.mainView}>
