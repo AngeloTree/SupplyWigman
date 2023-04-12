@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
 import FormError from "../components/FormError";
 import { auth } from "../firebase/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   StyleSheet,
   Text,
@@ -29,8 +30,7 @@ const SignIn = ({ navigation }) => {
       return;
     }
 
-    auth
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {})
       .catch((err) => {
         setErrorMessage(err.message);
