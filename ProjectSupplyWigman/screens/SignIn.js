@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
 import FormError from "../components/FormError";
+import FormSuccess from "../components/FormSuccess";
 import { auth } from "../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {
@@ -17,6 +18,7 @@ const SignIn = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [displayFormErr, setDisplayFormErr] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function navigate(screen) {
     navigation.navigate(screen);
@@ -29,11 +31,14 @@ const SignIn = ({ navigation }) => {
       setErrorMessage("Please fill in all fields");
       return;
     }
-
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {})
+      .then(() => {
+        setIsLoading(false);
+      })
       .catch((err) => {
         setErrorMessage(err.message);
+        setIsLoading(false);
         return setDisplayFormErr(true);
       });
   };
@@ -75,6 +80,8 @@ const SignIn = ({ navigation }) => {
       {displayFormErr == true ? (
         <FormError hideErrOverlay={setDisplayFormErr} err={errorMessage} />
       ) : null}
+
+      {isLoading === true ? <FormSuccess /> : null}
     </View>
   );
 };
