@@ -24,7 +24,7 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
       <StatusBar style="auto" />
       <View style={styles.footer}>
-        <Text style={styles.footerText}>SupplyWigman&#174; 2023</Text>
+        <Text style={styles.footerText}>SupplyWingman&#174; 2023</Text>
         <StatusBar style="auto" />
       </View>
     </View>

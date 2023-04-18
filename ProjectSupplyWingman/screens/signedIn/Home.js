@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from "react-native";
 import config from "../../config.json";
 
@@ -73,13 +74,11 @@ const Home = () => {
       {reqIDList.length > 0 && (
         <View style={styles.reqIDListContainer}>
           <Text style={styles.text}>Scanned IDs:</Text>
-          <FlatList
-            data={reqIDList}
-            renderItem={({ item }) => (
+          <ScrollView style={styles.scrollView}>
+            {reqIDList.map((item) => (
               <Text style={styles.listText}>{item}</Text>
-            )}
-            keyExtractor={(item) => item}
-          />
+            ))}
+          </ScrollView>
         </View>
       )}
     </View>
@@ -92,7 +91,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "50%",
   },
   camera: {
     flex: 1,
@@ -124,6 +122,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   reqIDListContainer: {
-    marginTop: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(10, 22, 43, 0.3)",
+    flex: 1,
+  },
+  scrollView: {
+    maxHeight: "50%",
+    width: "100%",
   },
 });
