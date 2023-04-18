@@ -12,7 +12,7 @@ SupplyWigman is a mobile app designed to streamline the inventory process in the
 ## Tech Stack
 
 - [React Native](https://reactnative.dev/) - A framework for building native mobile apps using JavaScript and React
-- [Tesseract.js](https://tesseract.projectnaptha.com/) - Optical Character Recognition (OCR) library to extract Req IDs from images
+- [GoogleVisionAPI](https://cloud.google.com/vision/docs/ocr/) - Optical Character Recognition (OCR) library to extract Req IDs from images
 - [xlsx](https://github.com/SheetJS/sheetjs) - A library to parse, read, and update Excel files in JavaScript
 - [react-native-camera](https://github.com/react-native-camera/react-native-camera) - A comprehensive camera module for React Native
 
