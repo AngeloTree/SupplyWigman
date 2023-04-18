@@ -1,6 +1,6 @@
-# SupplyWigman
+# SupplyWingman
 
-SupplyWigman is a mobile app designed to streamline the inventory process in the Air Force by automating the Req ID matching with the inventory Excel sheet. The app uses the phone's camera to scan the Req ID printed on the paperwork, then matches it with the corresponding Req ID in the Excel sheet, and crosses it out. This reduces manual effort and minimizes the risk of human error.
+SupplyWingman is a mobile app designed to streamline the inventory process in the Air Force by automating the Req ID matching with the inventory Excel sheet. The app uses the phone's camera to scan the Req ID printed on the paperwork, then matches it with the corresponding Req ID in the Excel sheet, and crosses it out. This reduces manual effort and minimizes the risk of human error.
 
 ## Features
 
@@ -18,12 +18,12 @@ SupplyWigman is a mobile app designed to streamline the inventory process in the
 
 ## Installation
 
-To get started with SupplyWigman, first ensure that you have [Node.js](https://nodejs.org/) and [React Native CLI](https://www.npmjs.com/package/react-native-cli) installed.
+To get started with SupplyWingman, first ensure that you have [Node.js](https://nodejs.org/) and [React Native CLI](https://www.npmjs.com/package/react-native-cli) installed.
 
 ```
 Clone the repository:
-git clone https://github.com/your_username/SupplyWigman.git
-cd SupplyWigman
+git clone https://github.com/your_username/SupplyWingman.git
+cd SupplyWingman
 
 Install the dependencies:
 npm install
