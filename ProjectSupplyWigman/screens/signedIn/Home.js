@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import config from "../../config.json";
 
 const API_KEY = config.apiKey;
@@ -9,6 +15,7 @@ const GOOGLE_VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?
 
 const Home = () => {
   const [reqID, setReqID] = useState("");
+  const [reqIDList, setReqIDList] = useState([]);
 
   const pickImageAndScanReqID = async () => {
     const result = await ImagePicker.launchCameraAsync({
@@ -51,6 +58,7 @@ const Home = () => {
 
     if (matchedReqID) {
       setReqID(matchedReqID[0]);
+      setReqIDList((prevList) => [...prevList, matchedReqID[0]]);
     } else {
       console.log("No Req ID found");
     }
@@ -59,9 +67,21 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={pickImageAndScanReqID}>
-        <Text style={styles.text}>Scan Req ID</Text>
+        <Text style={styles.buttonText}>Scan Req ID</Text>
       </TouchableOpacity>
-      {reqID && <Text style={styles.text}>Req ID: {reqID}</Text>}
+      {reqID && <Text style={styles.text}>Recent: {reqID}</Text>}
+      {reqIDList.length > 0 && (
+        <View style={styles.reqIDListContainer}>
+          <Text style={styles.text}>Scanned IDs:</Text>
+          <FlatList
+            data={reqIDList}
+            renderItem={({ item }) => (
+              <Text style={styles.listText}>{item}</Text>
+            )}
+            keyExtractor={(item) => item}
+          />
+        </View>
+      )}
     </View>
   );
 };
@@ -72,6 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: "50%",
   },
   camera: {
     flex: 1,
@@ -82,7 +103,10 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     justifyContent: "flex-end",
     alignItems: "center",
-    marginBottom: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "black",
   },
   button: {
     padding: 15,
@@ -92,5 +116,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: "black",
+    marginTop: 20,
+  },
+  listText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 5,
+  },
+  reqIDListContainer: {
+    marginTop: 0,
   },
 });
