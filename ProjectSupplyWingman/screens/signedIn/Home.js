@@ -70,7 +70,6 @@ const Home = () => {
       <TouchableOpacity style={styles.button} onPress={pickImageAndScanReqID}>
         <Text style={styles.buttonText}>Scan Req ID</Text>
       </TouchableOpacity>
-      {reqID && <Text style={styles.text}>Recent: {reqID}</Text>}
       {reqIDList.length > 0 && (
         <View style={styles.reqIDListContainer}>
           <Text style={styles.text}>Scanned IDs:</Text>
@@ -120,16 +119,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginTop: 5,
+    textAlign: "center",
   },
   reqIDListContainer: {
+    marginTop: 20,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(10, 22, 43, 0.3)",
-    flex: 1,
+    backgroundColor: "#e8eb98",
+    borderRadius: 20,
+    width: "100%",
+    height: "50%",
   },
   scrollView: {
-    maxHeight: "50%",
-    width: "100%",
+    maxHeight: "100%",
   },
 });
