@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
+import ExitIcon from "react-native-vector-icons/Feather";
 import {
   StyleSheet,
   Text,
@@ -17,6 +18,10 @@ const GOOGLE_VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?
 const Home = () => {
   const [reqID, setReqID] = useState("");
   const [reqIDList, setReqIDList] = useState([]);
+
+  const deleteReq = () => {
+    console.log("test");
+  };
 
   const pickImageAndScanReqID = async () => {
     const result = await ImagePicker.launchCameraAsync({
@@ -75,7 +80,20 @@ const Home = () => {
           <Text style={styles.text}>Scanned IDs:</Text>
           <ScrollView style={styles.scrollView}>
             {reqIDList.map((item) => (
-              <Text style={styles.listText}>{item}</Text>
+              <Text style={styles.listText}>
+                {item}
+                {
+                  <View>
+                    <ExitIcon
+                      name="delete"
+                      style={styles.icon}
+                      size={20}
+                      color={"#f72b07"}
+                      onPress={() => deleteReq()}
+                    />
+                  </View>
+                }
+              </Text>
             ))}
           </ScrollView>
         </View>
@@ -118,7 +136,7 @@ const styles = StyleSheet.create({
   listText: {
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 5,
+    marginTop: 20,
     textAlign: "center",
   },
   reqIDListContainer: {
@@ -133,5 +151,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     maxHeight: "100%",
+  },
+  icon: {
+    marginLeft: 5,
   },
 });
