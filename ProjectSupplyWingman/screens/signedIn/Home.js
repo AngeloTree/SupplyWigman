@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import ExitIcon from "react-native-vector-icons/Feather";
+import FormDelete from "../../components/FormDelete";
 import {
   StyleSheet,
   Text,
@@ -98,6 +99,7 @@ const Home = () => {
           </ScrollView>
         </View>
       )}
+      <FormDelete />
     </View>
   );
 };
