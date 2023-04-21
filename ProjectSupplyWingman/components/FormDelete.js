@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Button, Overlay, Icon } from "@rneui/themed";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 import Check from "react-native-vector-icons/Feather";
 import BackIcon from "react-native-vector-icons/Feather";
 
@@ -18,7 +24,9 @@ const FormDelete = (props) => {
         style={styles.backIcon}
         onPress={() => props.hideErrOverlay(false)}
       />
-      <Check name="check" size={60} color={"#61c449"} />
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Delete Req</Text>
+      </TouchableOpacity>
     </Overlay>
   );
 };
@@ -38,5 +46,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     left: 10,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "black",
+  },
+  button: {
+    padding: 15,
+    backgroundColor: "#e62222",
+    borderRadius: 10,
   },
 });
