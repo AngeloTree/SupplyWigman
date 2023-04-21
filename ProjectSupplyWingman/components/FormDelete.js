@@ -9,7 +9,7 @@ const FormDelete = (props) => {
     <Overlay
       overlayStyle={styles.overlay}
       isVisible={true}
-      onBackdropPress={() => props.close("")}
+      onBackdropPress={() => props.hideErrOverlay(false)}
     >
       <BackIcon
         name="chevron-left"

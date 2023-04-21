@@ -19,6 +19,7 @@ const GOOGLE_VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?
 const Home = () => {
   const [reqID, setReqID] = useState("");
   const [reqIDList, setReqIDList] = useState([]);
+  const [displayFormErr, setDisplayFormErr] = useState(true);
 
   const deleteReq = () => {
     console.log("test");
@@ -99,7 +100,9 @@ const Home = () => {
           </ScrollView>
         </View>
       )}
-      <FormDelete />
+      {displayFormErr == true ? (
+        <FormDelete hideErrOverlay={setDisplayFormErr} />
+      ) : null}
     </View>
   );
 };
