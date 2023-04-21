@@ -7,7 +7,6 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import Check from "react-native-vector-icons/Feather";
 import BackIcon from "react-native-vector-icons/Feather";
 
 const FormDelete = (props) => {

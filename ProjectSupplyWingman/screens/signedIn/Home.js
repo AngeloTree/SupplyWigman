@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import ExitIcon from "react-native-vector-icons/Feather";
+import Options from "react-native-vector-icons/SimpleLineIcons";
 import FormDelete from "../../components/FormDelete";
 import {
   StyleSheet,
@@ -86,8 +87,8 @@ const Home = () => {
                 {item}
                 {
                   <View>
-                    <ExitIcon
-                      name="delete"
+                    <Options
+                      name="options"
                       style={styles.icon}
                       size={20}
                       color={"#f72b07"}
@@ -158,6 +159,6 @@ const styles = StyleSheet.create({
     maxHeight: "100%",
   },
   icon: {
-    marginLeft: 5,
+    marginLeft: 15,
   },
 });
