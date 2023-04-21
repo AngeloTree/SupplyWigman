@@ -16,6 +16,7 @@ const FormDelete = (props) => {
         size={60}
         color={"#918c8c"}
         style={styles.backIcon}
+        onPress={() => props.hideErrOverlay(false)}
       />
       <Check name="check" size={60} color={"#61c449"} />
     </Overlay>
