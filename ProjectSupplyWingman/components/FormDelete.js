@@ -6,10 +6,13 @@ import {
   StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import BackIcon from "react-native-vector-icons/Feather";
 
 const FormDelete = (props) => {
+  const [reqID, setReqID] = useState("");
+
   return (
     <Overlay
       overlayStyle={styles.overlay}
@@ -23,9 +26,18 @@ const FormDelete = (props) => {
         style={styles.backIcon}
         onPress={() => props.hideErrOverlay(false)}
       />
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Delete Req</Text>
-      </TouchableOpacity>
+      <View style={styles.deleteReqContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Delete Req</Text>
+        </TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          value={reqID}
+          onChangeText={(text) => setReqID(text)}
+          placeholder="Edit Req"
+          placeholderTextColor="#918c8c"
+        />
+      </View>
     </Overlay>
   );
 };
@@ -54,5 +66,20 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "#e62222",
     borderRadius: 10,
+  },
+  input: {
+    width: "40%",
+    height: 50,
+    borderColor: "#918c8c",
+    borderWidth: 1,
+    color: "black",
+    textAlign: "center",
+    borderRadius: 10,
+    marginLeft: 10,
+  },
+  deleteReqContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
