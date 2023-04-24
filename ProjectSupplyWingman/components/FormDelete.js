@@ -13,8 +13,18 @@ import BackIcon from "react-native-vector-icons/Feather";
 const FormDelete = (props) => {
   const [reqID, setReqID] = useState("");
 
-  const saveReq = () => {
-    console.log(props.reqList, props.selectedID);
+  const saveReq = (newReqID) => {
+    const index = props.reqList.findIndex(
+      (id) => id.toString() === props.selectedID.toString()
+    );
+    console.log(props.reqList);
+    console.log("selectID:", props.selectedID);
+    if (index >= 0) {
+      const updatedReqIDList = [...props.reqList];
+      updatedReqIDList[index] = newReqID;
+      props.setReqIDListState(updatedReqIDList);
+      console.log("save req");
+    }
   };
   return (
     <Overlay
@@ -41,7 +51,10 @@ const FormDelete = (props) => {
           placeholderTextColor="#918c8c"
         />
       </View>
-      <TouchableOpacity style={styles.saveButton} onPress={() => saveReq()}>
+      <TouchableOpacity
+        style={styles.saveButton}
+        onPress={() => saveReq(reqID)}
+      >
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
     </Overlay>
