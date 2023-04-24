@@ -23,9 +23,20 @@ const Home = () => {
   const [displayFormErr, setDisplayFormErr] = useState(false);
   const [selectedReqID, setSelectedReqID] = useState(null);
 
-  const deleteReq = (selectedID) => {
+  const formDeleteReq = (selectedID) => {
     setSelectedReqID(selectedID);
     setDisplayFormErr(true);
+  };
+
+  const deleteReqFunc = (selectedID) => {
+    const index = reqIDList.indexOf(selectedID);
+    if (index > -1) {
+      const updatedReqIDList = [...reqIDList];
+      updatedReqIDList.splice(index, 1);
+      setReqIDList(updatedReqIDList);
+      setSelectedReqID(null);
+      setDisplayFormErr(false);
+    }
   };
 
   const pickImageAndScanReqID = async () => {
@@ -94,7 +105,7 @@ const Home = () => {
                       style={styles.icon}
                       size={20}
                       color={"#f72b07"}
-                      onPress={() => deleteReq(item)}
+                      onPress={() => formDeleteReq(item)}
                     />
                   </View>
                 }
@@ -109,6 +120,7 @@ const Home = () => {
           reqList={reqIDList}
           selectedID={selectedReqID}
           setReqIDListState={setReqIDList}
+          deleteReqFunc={deleteReqFunc}
         />
       ) : null}
     </View>

@@ -13,6 +13,11 @@ import BackIcon from "react-native-vector-icons/Feather";
 const FormDelete = (props) => {
   const [reqID, setReqID] = useState("");
 
+  const deleteReq = () => {
+    console.log("delete btn");
+    props.deleteReqFunc(props.selectedID);
+  };
+
   const saveReq = (newReqID) => {
     const index = props.reqList.findIndex(
       (id) => id.toString() === props.selectedID.toString()
@@ -40,7 +45,7 @@ const FormDelete = (props) => {
         onPress={() => props.hideErrOverlay(false)}
       />
       <View style={styles.deleteReqContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => deleteReq()}>
           <Text style={styles.buttonText}>Delete Req</Text>
         </TouchableOpacity>
         <TextInput
