@@ -21,9 +21,11 @@ const Home = () => {
   const [reqID, setReqID] = useState("");
   const [reqIDList, setReqIDList] = useState([]);
   const [displayFormErr, setDisplayFormErr] = useState(false);
+  const [selectedReqID, setSelectedReqID] = useState(null);
 
-  const deleteReq = () => {
-    console.log("test");
+  const deleteReq = (selectedID) => {
+    console.log("Here is your req: ", selectedID);
+    setSelectedReqID(selectedID);
     setDisplayFormErr(true);
   };
 
@@ -93,7 +95,7 @@ const Home = () => {
                       style={styles.icon}
                       size={20}
                       color={"#f72b07"}
-                      onPress={() => deleteReq()}
+                      onPress={() => deleteReq({ item })}
                     />
                   </View>
                 }
@@ -103,7 +105,11 @@ const Home = () => {
         </View>
       )}
       {displayFormErr == true ? (
-        <FormDelete hideErrOverlay={setDisplayFormErr} />
+        <FormDelete
+          hideErrOverlay={setDisplayFormErr}
+          reqList={reqIDList}
+          selectedID={selectedReqID}
+        />
       ) : null}
     </View>
   );

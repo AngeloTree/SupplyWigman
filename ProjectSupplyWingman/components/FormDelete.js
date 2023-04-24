@@ -13,6 +13,9 @@ import BackIcon from "react-native-vector-icons/Feather";
 const FormDelete = (props) => {
   const [reqID, setReqID] = useState("");
 
+  const saveReq = () => {
+    console.log(props.reqList, props.selectedID);
+  };
   return (
     <Overlay
       overlayStyle={styles.overlay}
@@ -38,12 +41,7 @@ const FormDelete = (props) => {
           placeholderTextColor="#918c8c"
         />
       </View>
-      <TouchableOpacity
-        style={styles.saveButton}
-        onPress={() => {
-          console.log("texxt");
-        }}
-      >
+      <TouchableOpacity style={styles.saveButton} onPress={() => saveReq()}>
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
     </Overlay>
