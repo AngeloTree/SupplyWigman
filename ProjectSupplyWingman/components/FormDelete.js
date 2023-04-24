@@ -38,6 +38,14 @@ const FormDelete = (props) => {
           placeholderTextColor="#918c8c"
         />
       </View>
+      <TouchableOpacity
+        style={styles.saveButton}
+        onPress={() => {
+          console.log("texxt");
+        }}
+      >
+        <Text style={styles.buttonText}>Save</Text>
+      </TouchableOpacity>
     </Overlay>
   );
 };
@@ -51,7 +59,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
+    flexDirection: "column",
   },
   backIcon: {
     position: "absolute",
@@ -81,5 +89,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  saveButton: {
+    padding: 15,
+    backgroundColor: "#48f03c",
+    borderRadius: 10,
+    marginTop: 10,
   },
 });

@@ -20,10 +20,11 @@ const GOOGLE_VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?
 const Home = () => {
   const [reqID, setReqID] = useState("");
   const [reqIDList, setReqIDList] = useState([]);
-  const [displayFormErr, setDisplayFormErr] = useState(true);
+  const [displayFormErr, setDisplayFormErr] = useState(false);
 
   const deleteReq = () => {
     console.log("test");
+    setDisplayFormErr(true);
   };
 
   const pickImageAndScanReqID = async () => {
