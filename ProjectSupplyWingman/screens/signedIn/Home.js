@@ -88,9 +88,14 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={pickImageAndScanReqID}>
-        <Text style={styles.buttonText}>Scan Req ID</Text>
-      </TouchableOpacity>
+      <View style={styles.scanSubmitContainer}>
+        <TouchableOpacity style={styles.button} onPress={pickImageAndScanReqID}>
+          <Text style={styles.buttonText}>Scan Req ID</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.submitButton}>
+          <Text style={styles.buttonText}>Submit Req ID</Text>
+        </TouchableOpacity>
+      </View>
       {reqIDList.length > 0 && (
         <View style={styles.reqIDListContainer}>
           <Text style={styles.text}>Scanned IDs:</Text>
@@ -134,6 +139,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  scanSubmitContainer: {
+    padding: 0,
+    margin: 0,
+    flexDirection: "row",
+  },
   camera: {
     flex: 1,
     width: "100%",
@@ -152,6 +162,12 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     borderRadius: 10,
+  },
+  submitButton: {
+    padding: 15,
+    backgroundColor: "#48f03c",
+    borderRadius: 10,
+    marginLeft: 10,
   },
   text: {
     fontSize: 18,
