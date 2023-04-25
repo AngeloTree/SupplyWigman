@@ -4,6 +4,8 @@ import * as ImagePicker from "expo-image-picker";
 import ExitIcon from "react-native-vector-icons/Feather";
 import Options from "react-native-vector-icons/SimpleLineIcons";
 import FormDelete from "../../components/FormDelete";
+import * as MailComposer from "expo-mail-composer";
+
 import {
   StyleSheet,
   Text,
@@ -23,6 +25,23 @@ const Home = () => {
   const [displayFormErr, setDisplayFormErr] = useState(false);
   const [selectedReqID, setSelectedReqID] = useState(null);
 
+  const submitReqIDFunc = () => {
+    const toEmail = "chaknisangelo@gmail.com"; // Replace with your email address
+    const subject = "Req IDs"; // Replace with the email subject
+    const body = reqIDList.join(","); // Join the Req IDs with a comma
+
+    MailComposer.composeAsync({
+      recipients: [toEmail],
+      subject,
+      body,
+    })
+      .then((result) => {
+        console.log(result.status);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const formDeleteReq = (selectedID) => {
     setSelectedReqID(selectedID);
     setDisplayFormErr(true);
@@ -92,7 +111,7 @@ const Home = () => {
         <TouchableOpacity style={styles.button} onPress={pickImageAndScanReqID}>
           <Text style={styles.buttonText}>Scan Req ID</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.submitButton}>
+        <TouchableOpacity style={styles.submitButton} onPress={submitReqIDFunc}>
           <Text style={styles.buttonText}>Submit Req ID</Text>
         </TouchableOpacity>
       </View>
