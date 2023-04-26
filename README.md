@@ -15,6 +15,7 @@ SupplyWingman is a mobile app designed to streamline the inventory process in th
 - [GoogleVisionAPI](https://cloud.google.com/vision/docs/ocr/) - Optical Character Recognition (OCR) library to extract Req IDs from images
 - [xlsx](https://github.com/SheetJS/sheetjs) - A library to parse, read, and update Excel files in JavaScript
 - [react-native-camera](https://github.com/react-native-camera/react-native-camera) - A comprehensive camera module for React Native
+- [expo-mail-composer] - An Expo SDK module for composing and sending emails from your app
 
 ## Installation
 
